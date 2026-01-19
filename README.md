@@ -1,24 +1,59 @@
-# README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|Column            |Type   |Options    |
+|nickname          |strings|null: false|
+|email             |strings|null: false|
+|encrypted_password|strings|null: false|
+|first_name        |strings|null: false|
+|last_name         |strings|null: false|
+|first_name_kana   |strings|null: false|
+|last_name_kana    |strings|null: false|
+|birthday          |date   |null: false|
 
-Things you may want to cover:
+### Association
 
-* Ruby version
+has_many :items
+has_many :buys
 
-* System dependencies
+## itemsテーブル
 
-* Configuration
+|Column                  |Type      |Option                  |
+|name                    |strings   |null: false             |
+|description             |text      |null: false             |
+|price                   |integer   |null: false             |
+|condition_description_id|integer   |null: false             |
+|category_id             |integer   |null: false             |
+|shipping_day_id         |integer   |null: false             |
+|prefecture_id           |integer   |null: false             |
+|shipping_prise_id       |integer   |null: false             |
+|user                    |references|null: false, foreign_key|
 
-* Database creation
+### Association
+belongs_to :user
+has_one :buy
 
-* Database initialization
 
-* How to run the test suite
+## buysテーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+|Colum|Type      |Option                  |
+|user |references|null: false, foreign_key|
+|item |references|null: false, foreign_key|
 
-* Deployment instructions
+### Association
+belongs_to :user
+belongs_to :item
+has_one :destination
 
-* ...
+## destinationsテーブル
+
+|Colum           |Type      |Option                  |
+|postal_code     |strings   |null: false             |
+|prefecture_id   |integer   |null: false             |
+|municipalities  |strings   |null: false             |
+|street_address  |strings   |null: false             |
+|building_name   |strings   |                        |
+|telephone_number|strings   |null: false             |
+|buy             |references|null: false, foreign_key|
+
+### Association
+belongs_to :buy

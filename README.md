@@ -1,20 +1,19 @@
 ## usersテーブル
 
-|Column         |Type   |Options    |
-|nickname       |strings|null: false|
-|email          |strings|null: false|
-|password       |strings|null: false|
-|name           |strings|null: false|
-|first_name     |strings|null: false|
-|last_name      |strings|null: false|
-|first_name_kana|strings|null: false|
-|last_name_kana |strings|null: false|
-|birthday       |date   |null: false|
+|Column            |Type   |Options    |
+|nickname          |strings|null: false|
+|email             |strings|null: false|
+|encrypted_password|strings|null: false|
+|first_name        |strings|null: false|
+|last_name         |strings|null: false|
+|first_name_kana   |strings|null: false|
+|last_name_kana    |strings|null: false|
+|birthday          |date   |null: false|
 
 ### Association
 
 has_many :items
-has_many :buy
+has_many :buys
 
 ## itemsテーブル
 
@@ -25,7 +24,7 @@ has_many :buy
 |condition_description_id|integer   |null: false             |
 |category_id             |integer   |null: false             |
 |shipping_day_id         |integer   |null: false             |
-|prefectures_id          |integer   |null: false             |
+|prefecture_id           |integer   |null: false             |
 |shipping_prise_id       |integer   |null: false             |
 |user                    |references|null: false, foreign_key|
 
@@ -49,7 +48,7 @@ has_one :destination
 
 |Colum           |Type      |Option                  |
 |postal_code     |strings   |null: false             |
-|prefectures_id  |integer   |null: false             |
+|prefecture_id   |integer   |null: false             |
 |municipalities  |strings   |null: false             |
 |street_address  |strings   |null: false             |
 |building_name   |strings   |                        |

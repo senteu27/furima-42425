@@ -89,5 +89,10 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
     end
+    context "ユーザー新規登録出来る時" do
+      it "正しくニックネーム、パスワード、パスワード確認用、email、お名前(全角)、お名前カナ(全角)、生年月日を入力すると登録できる" do
+        expect(@user).to be_valid
+      end
+    end
   end
 end

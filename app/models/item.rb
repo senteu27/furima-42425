@@ -4,11 +4,11 @@ class Item < ApplicationRecord
   validates :name
   validates :description
   validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"}
-  validates :condition_description_id, numericality: {other_then: 1, messages: "can t be blank"}
-  validates :category_id, numericality: {other_then: 1, message: "can t be blank"}
-  validates :shipping_day_id, numericality: {other_then: 1, messages: "can t be blank"}
-  validates :prefecture_id, numericality: {other_then: 1, messages: "can t be blank"}
-  validates :shipping_prise_id, numericality: {other_then: 1, messages: "can t be blank"}
+  validates :condition_description_id, numericality: {other_than: 1, message: "can t be blank"}
+  validates :category_id, numericality: {other_than: 1, message: "can t be blank"}
+  validates :shipping_day_id, numericality: {other_than: 1, message: "can t be blank"}
+  validates :prefecture_id, numericality: {other_than: 1, message: "can t be blank"}
+  validates :shipping_prise_id, numericality: {other_than: 1, message: "can t be blank"}
   end
 
   belongs_to :user

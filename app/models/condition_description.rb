@@ -1,4 +1,4 @@
-class Condition_description < ActiveHash::Base
+class ConditionDescription < ActiveHash::Base
   self.data = [
     {id: 1, name: "---"},
     {id: 2, name: "新品・未使用"},

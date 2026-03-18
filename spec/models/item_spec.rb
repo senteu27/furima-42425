@@ -63,5 +63,10 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
     end
+    context "商品出品出来る時" do
+      it "必要な情報を入力すれば出品できる" do
+        expect(@item).to be_valid
+      end
+    end
   end
 end

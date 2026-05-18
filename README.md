@@ -33,7 +33,7 @@ belongs_to :user
 has_one :buy
 
 
-## buysテーブル
+## ordersテーブル
 
 |Colum|Type      |Option                  |
 |user |references|null: false, foreign_key|

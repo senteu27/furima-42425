@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only:[:index]
-  before_action :user_check, only:[:index]
+  before_action :item_user_check, only:[:index]
 
   def index
     @item = Item.find(params[:item_id])
@@ -34,10 +34,14 @@ class OrdersController < ApplicationController
       )
   end
 
-  def user_check
+  def item_user_check
     @item = Item.find(params[:item_id])
-    if current_user == @item.user || current_user != @item.user
+    if current_user == @item.user
       redirect_to root_path
+    else
+      if @item.order.present?
+        redirect_to root_path
+      end
     end
   end
 end

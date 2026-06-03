@@ -8,7 +8,6 @@ RSpec.describe OrderDestination, type: :model do
   end
 
   describe '商品購入機能' do
-
     context '商品購入できない時' do
       it '郵便番号が空では購入できない' do
         @order_destination.postal_code = ''
@@ -18,12 +17,12 @@ RSpec.describe OrderDestination, type: :model do
       it '郵便番号にハイフンが含まれていないと購入できない' do
         @order_destination.postal_code = '1234567'
         @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_destination.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '郵便番号が全角では購入できない' do
         @order_destination.postal_code = '１２３４-５６７'
         @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_destination.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '都道府県が1では購入できない' do
         @order_destination.prefecture_id = 1
@@ -48,12 +47,12 @@ RSpec.describe OrderDestination, type: :model do
       it '電話番号は半角数字のみじゃないと購入できない' do
         @order_destination.telephone_number = '090-1234-5678'
         @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Telephone number is invalid")
+        expect(@order_destination.errors.full_messages).to include('Telephone number is invalid')
       end
       it '電話番号が全角では購入できない' do
         @order_destination.telephone_number = '０９０１２３４５６７８'
         @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Telephone number is invalid")
+        expect(@order_destination.errors.full_messages).to include('Telephone number is invalid')
       end
     end
     context '商品購入できるとき' do

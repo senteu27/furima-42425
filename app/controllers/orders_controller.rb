@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, only:[:index]
-  before_action :item_user_check, only:[:index]
+  before_action :authenticate_user!, only: [:index]
+  before_action :item_user_check, only: [:index]
 
   def index
     @item = Item.find(params[:item_id])
@@ -22,26 +22,26 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order_destination).permit(:postal_code, :prefecture_id, :municipalities,:street_address, :building_name,:telephone_number).merge(user_id: current_user.id, item_id: (@item.id), token: params[:token] )
+    params.require(:order_destination).permit(:postal_code, :prefecture_id, :municipalities, :street_address, :building_name, :telephone_number).merge(
+      user_id: current_user.id, item_id: @item.id, token: params[:token]
+    )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: order_params[:token],
-        currency: 'jpy'
-      )
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: order_params[:token],
+      currency: 'jpy'
+    )
   end
 
   def item_user_check
     @item = Item.find(params[:item_id])
     if current_user == @item.user
       redirect_to root_path
-    else
-      if @item.order.present?
-        redirect_to root_path
-      end
+    elsif @item.order.present?
+      redirect_to root_path
     end
   end
 end

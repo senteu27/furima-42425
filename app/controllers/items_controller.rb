@@ -63,8 +63,8 @@ class ItemsController < ApplicationController
   end
 
   def item_check
-    if @item.order.present?
-      redirect_to root_path
-    end
+    return unless @item.order.present?
+
+    redirect_to root_path
   end
 end

@@ -3,6 +3,9 @@ function calculate (){
    const feeTax = document.getElementById("add-tax-price");
    const profit = document.getElementById("profit");
 
+   if(!priceInput){
+      return;
+   }
    priceInput.addEventListener("input", () => {
       const price = Number(priceInput.value);
       const fee = Math.floor(price * 0.1);
